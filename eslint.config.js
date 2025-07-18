@@ -1,35 +1,54 @@
-import js from "@eslint/js"
-import globals from "globals"
-import reactHooks from "eslint-plugin-react-hooks"
-import reactRefresh from "eslint-plugin-react-refresh"
-import tseslint from "typescript-eslint"
-import prettier from "eslint-config-prettier"
-import prettierPlugin from "eslint-plugin-prettier"
+// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
+import storybook from "eslint-plugin-storybook";
 
-export default tseslint.config([
-  {
-    ignores: ["dist/**", "node_modules/**", "build/**", "*.config.js"],
+import js from '@eslint/js'
+import typescript from '@typescript-eslint/eslint-plugin'
+import typescriptParser from '@typescript-eslint/parser'
+import react from 'eslint-plugin-react'
+import reactHooks from 'eslint-plugin-react-hooks'
+
+export default [js.configs.recommended, {
+  files: ['packages/**/*.{js,jsx,ts,tsx}'],
+  plugins: {
+    '@typescript-eslint': typescript,
+    react,
+    'react-hooks': reactHooks,
   },
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [js.configs.recommended, ...tseslint.configs.recommended, prettier],
-    plugins: {
-      "react-hooks": reactHooks,
-      "react-refresh": reactRefresh,
-      prettier: prettierPlugin,
+  languageOptions: {
+    parser: typescriptParser,
+    parserOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      ecmaFeatures: {
+        jsx: true,
+      },
     },
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
-    },
-    rules: {
-      ...reactHooks.configs.recommended.rules,
-      "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
-      "prettier/prettier": "error",
-      "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
-      "@typescript-eslint/explicit-function-return-type": "off",
-      "@typescript-eslint/explicit-module-boundary-types": "off",
-      "@typescript-eslint/no-explicit-any": "warn",
+    globals: {
+      React: 'readonly',
+      HTMLButtonElement: 'readonly',
+      HTMLElement: 'readonly',
+      MouseEvent: 'readonly',
+      setTimeout: 'readonly',
+      clearTimeout: 'readonly',
+      console: 'readonly',
+      window: 'readonly',
+      document: 'readonly',
     },
   },
-])
+  rules: {
+    ...typescript.configs.recommended.rules,
+    ...react.configs.recommended.rules,
+    ...reactHooks.configs.recommended.rules,
+    'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 'off',
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    'no-undef': 'off', // TypeScript handles this
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
+}, ...storybook.configs["flat/recommended"], ...storybook.configs["flat/recommended"]];

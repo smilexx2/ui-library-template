@@ -7,6 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Build output
 node_modules
 dist
 dist-ssr
@@ -23,4 +24,22 @@ dist-ssr
 *.sln
 *.sw?
 
+# Next.js build output
 **/.next
+
+# Yarn 4.x (Berry)
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/patches
+!.yarn/install-state.gz
+
+# Uncomment the line below if NOT using Zero-Installs
+#.yarn/cache
+
+.yarn/unplugged
+.yarn/build-state.yml
+
+# Plug'n'Play
+.pnp.*

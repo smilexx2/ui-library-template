@@ -1,4 +1,8 @@
 {
   "index": "Getting Started",
-  "components": "Components"
+  "installation": "Installation",
+  "components": {
+    "title": "Components",
+    "type": "folder"
+  }
 }
