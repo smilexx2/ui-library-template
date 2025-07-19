@@ -40,7 +40,7 @@ export default defineConfig({
           preserveModulesRoot: "src",
           entryFileNames: "[name].js",
           assetFileNames: assetInfo => {
-            if (assetInfo.name?.endsWith('.css')) {
+            if (assetInfo.name?.endsWith(".css")) {
               return "index.css"
             }
             return assetInfo.name as string
@@ -52,7 +52,7 @@ export default defineConfig({
           preserveModulesRoot: "src",
           entryFileNames: "[name].cjs",
           assetFileNames: assetInfo => {
-            if (assetInfo.name?.endsWith('.css')) {
+            if (assetInfo.name?.endsWith(".css")) {
               return "index.css"
             }
             return assetInfo.name as string

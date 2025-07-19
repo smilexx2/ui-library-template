@@ -16,7 +16,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
       formats: ["es", "cjs"],
-      fileName: (format) => {
+      fileName: format => {
         const extension = format === "es" ? "js" : "cjs"
         return `index.${extension}`
       },
@@ -36,8 +36,8 @@ export default defineConfig({
           preserveModules: true,
           preserveModulesRoot: "src",
           entryFileNames: "[name].js",
-          assetFileNames: (assetInfo) => {
-            if (assetInfo.name?.endsWith('.css')) {
+          assetFileNames: assetInfo => {
+            if (assetInfo.name?.endsWith(".css")) {
               return "styles/index.css"
             }
             return assetInfo.name as string
@@ -48,8 +48,8 @@ export default defineConfig({
           preserveModules: true,
           preserveModulesRoot: "src",
           entryFileNames: "[name].cjs",
-          assetFileNames: (assetInfo) => {
-            if (assetInfo.name?.endsWith('.css')) {
+          assetFileNames: assetInfo => {
+            if (assetInfo.name?.endsWith(".css")) {
               return "styles/index.css"
             }
             return assetInfo.name as string
