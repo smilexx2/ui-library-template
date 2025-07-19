@@ -21,31 +21,18 @@
     "clean": "rm -rf packages/*/dist packages/*/node_modules docs/node_modules storybook/node_modules node_modules .yarn/cache"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^4.0.1",
-    "@storybook/addon-docs": "^9.0.17",
-    "@storybook/addon-onboarding": "^9.0.17",
-    "@storybook/builder-vite": "8.6.14",
-    "@storybook/react-vite": "8.6.14",
     "@tailwindcss/postcss": "^4.1.11",
-    "@types/aria-query": "^5.0.4",
     "@types/node": "^20.14.10",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
     "autoprefixer": "^10.4.21",
     "eslint": "^9.0.0",
     "eslint-plugin-react": "^7.35.0",
     "eslint-plugin-react-hooks": "^5.0.0",
-    "eslint-plugin-storybook": "^9.0.17",
     "postcss": "^8.5.6",
     "prettier": "^3.0.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "storybook": "8.6.14",
     "tailwindcss": "^4.1.11",
-    "typescript": "^5.8.3",
-    "vite": "^7.0.5"
+    "typescript": "^5.8.3"
   },
   "packageManager": "yarn@4.9.2"
 }
