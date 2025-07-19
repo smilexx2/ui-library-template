@@ -10,12 +10,28 @@
     "dist"
   ],
   "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.js"
+    },
     "./button": {
       "types": "./dist/components/ui/button.d.ts",
-      "import": "./dist/components/ui/button.js"
+      "import": "./dist/components/ui/button.js",
+      "require": "./dist/components/ui/button.cjs",
+      "default": "./dist/components/ui/button.js"
     },
-    "./styles.css": "./dist/index.css"
+    "./styles.css": {
+      "import": "./dist/index.css",
+      "require": "./dist/index.css",
+      "default": "./dist/index.css"
+    },
+    "./package.json": "./package.json"
   },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc && vite build",
     "dev": "vite build --watch",

@@ -15,9 +15,14 @@ export default defineConfig({
   build: {
     lib: {
       entry: {
+        index: "./src/index.ts",
         "components/ui/button": "./src/components/ui/button.tsx",
       },
-      formats: ["es"],
+      formats: ["es", "cjs"],
+      fileName: (format, entryName) => {
+        const extension = format === "es" ? "js" : "cjs"
+        return `${entryName}.${extension}`
+      },
     },
     rollupOptions: {
       external: [
@@ -28,17 +33,32 @@ export default defineConfig({
         "class-variance-authority",
         "@radix-ui/react-slot",
       ],
-      output: {
-        preserveModules: true,
-        preserveModulesRoot: "src",
-        entryFileNames: "[name].js",
-        assetFileNames: assetInfo => {
-          if (assetInfo.name === "index.css") {
-            return "index.css"
-          }
-          return assetInfo.name as string
+      output: [
+        {
+          format: "es",
+          preserveModules: true,
+          preserveModulesRoot: "src",
+          entryFileNames: "[name].js",
+          assetFileNames: assetInfo => {
+            if (assetInfo.name?.endsWith('.css')) {
+              return "index.css"
+            }
+            return assetInfo.name as string
+          },
         },
-      },
+        {
+          format: "cjs",
+          preserveModules: true,
+          preserveModulesRoot: "src",
+          entryFileNames: "[name].cjs",
+          assetFileNames: assetInfo => {
+            if (assetInfo.name?.endsWith('.css')) {
+              return "index.css"
+            }
+            return assetInfo.name as string
+          },
+        },
+      ],
     },
     sourcemap: true,
     emptyOutDir: true,

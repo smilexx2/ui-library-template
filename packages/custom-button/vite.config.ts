@@ -15,9 +15,11 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
-      name: "CustomButton",
-      fileName: "index",
-      formats: ["es"],
+      formats: ["es", "cjs"],
+      fileName: (format) => {
+        const extension = format === "es" ? "js" : "cjs"
+        return `index.${extension}`
+      },
     },
     rollupOptions: {
       external: [
@@ -28,9 +30,32 @@ export default defineConfig({
         "class-variance-authority",
         "lucide-react",
       ],
-      output: {
-        preserveModules: false,
-      },
+      output: [
+        {
+          format: "es",
+          preserveModules: true,
+          preserveModulesRoot: "src",
+          entryFileNames: "[name].js",
+          assetFileNames: (assetInfo) => {
+            if (assetInfo.name?.endsWith('.css')) {
+              return "styles/index.css"
+            }
+            return assetInfo.name as string
+          },
+        },
+        {
+          format: "cjs",
+          preserveModules: true,
+          preserveModulesRoot: "src",
+          entryFileNames: "[name].cjs",
+          assetFileNames: (assetInfo) => {
+            if (assetInfo.name?.endsWith('.css')) {
+              return "styles/index.css"
+            }
+            return assetInfo.name as string
+          },
+        },
+      ],
     },
     sourcemap: true,
     emptyOutDir: true,

@@ -22,8 +22,17 @@ This library requires shadcn/ui to be set up in your project. If you haven't set
 
 ## Installation
 
+This is a monorepo template providing multiple packages:
+
 ```bash
-npm install @your-username/ui-library
+# Core utilities
+npm install @smilexx2/ui-core
+
+# shadcn/ui style components
+npm install @smilexx2/ui
+
+# Custom enhanced components
+npm install @smilexx2/custom-button
 ```
 
 ### Peer Dependencies
@@ -34,44 +43,94 @@ This library has peer dependencies that should already be in your project if you
 npm install react react-dom @radix-ui/react-slot class-variance-authority clsx tailwind-merge tailwindcss
 ```
 
+## Package Exports & Import Examples
+
+All packages support both ESM and CommonJS imports with comprehensive exports:
+
+### @smilexx2/ui-core
+
+```typescript
+// Main export
+import { cn } from '@smilexx2/ui-core'
+
+// Subpath export for tree-shaking
+import { cn } from '@smilexx2/ui-core/utils'
+
+// CommonJS
+const { cn } = require('@smilexx2/ui-core')
+```
+
+### @smilexx2/ui
+
+```typescript
+// Main export - all components
+import { Button, buttonVariants } from '@smilexx2/ui'
+import '@smilexx2/ui/styles.css'
+
+// Subpath export - individual components for tree-shaking
+import { Button } from '@smilexx2/ui/button'
+
+// CSS import
+import '@smilexx2/ui/styles.css'
+
+// CommonJS
+const { Button } = require('@smilexx2/ui')
+```
+
+### @smilexx2/custom-button
+
+```typescript
+// Main export
+import { CustomButton } from '@smilexx2/custom-button'
+import '@smilexx2/custom-button/styles.css'
+
+// Direct component import
+import { CustomButton } from '@smilexx2/custom-button/custom-button'
+
+// CSS import
+import '@smilexx2/custom-button/styles.css'
+
+// CommonJS
+const { CustomButton } = require('@smilexx2/custom-button')
+```
+
 ## Quick Start
 
 ```tsx
 import React from "react"
-// shadcn/ui components (install these from shadcn/ui)
-import { Button } from "@/components/ui/button"
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-// Extension components from this library
-import { StatsCard, UserProfile } from "@your-username/ui-library"
-import { Users } from "lucide-react"
+// Import utilities and components from the monorepo packages
+import { cn } from "@smilexx2/ui-core"
+import { Button, buttonVariants } from "@smilexx2/ui"
+import { CustomButton } from "@smilexx2/custom-button"
+import "@smilexx2/ui/styles.css"
+import "@smilexx2/custom-button/styles.css"
 
 function App() {
   return (
-    <div className="space-y-4">
-      <Card className="w-96">
-        <CardHeader>
-          <CardTitle>Welcome to Extension Library</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Button>Get Started</Button>
-        </CardContent>
-      </Card>
-
-      <StatsCard
-        title="Total Users"
-        value="1,234"
-        trend={{ value: 12.5, label: "increase", period: "last month" }}
-        icon={<Users className="h-4 w-4" />}
-      />
-
-      <UserProfile
-        user={{
-          name: "John Doe",
-          email: "john@example.com",
-          status: "online",
-          role: "admin"
-        }}
-      />
+    <div className="space-y-4 p-8">
+      <div className={cn("max-w-md mx-auto space-y-4")}>
+        <h1 className="text-2xl font-bold">UI Library Demo</h1>
+        
+        {/* Standard Button from @smilexx2/ui */}
+        <Button variant="default" size="default">
+          Standard Button
+        </Button>
+        
+        {/* Button variants using buttonVariants utility */}
+        <div className="space-x-2">
+          <button className={buttonVariants({ variant: "secondary" })}>
+            Secondary
+          </button>
+          <button className={buttonVariants({ variant: "outline" })}>
+            Outline
+          </button>
+        </div>
+        
+        {/* Custom Button with enhanced features */}
+        <CustomButton variant="default" size="default">
+          Enhanced Custom Button
+        </CustomButton>
+      </div>
     </div>
   )
 }

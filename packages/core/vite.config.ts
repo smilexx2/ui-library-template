@@ -12,16 +12,32 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      entry: resolve(__dirname, "src/index.ts"),
-      name: "UICore",
-      fileName: "index",
-      formats: ["es"],
+      entry: {
+        index: resolve(__dirname, "src/index.ts"),
+        "lib/utils": resolve(__dirname, "src/lib/utils.ts"),
+      },
+      formats: ["es", "cjs"],
+      fileName: (format, entryName) => {
+        const extension = format === "es" ? "js" : "cjs"
+        return `${entryName}.${extension}`
+      },
     },
     rollupOptions: {
       external: ["clsx", "tailwind-merge"],
-      output: {
-        preserveModules: false,
-      },
+      output: [
+        {
+          format: "es",
+          preserveModules: true,
+          preserveModulesRoot: "src",
+          entryFileNames: "[name].js",
+        },
+        {
+          format: "cjs",
+          preserveModules: true,
+          preserveModulesRoot: "src",
+          entryFileNames: "[name].cjs",
+        },
+      ],
     },
     sourcemap: true,
     emptyOutDir: true,

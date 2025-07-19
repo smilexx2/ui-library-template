@@ -18,7 +18,7 @@
     "lint:fix": "yarn workspaces foreach -A run lint:fix",
     "format": "prettier --write \"packages/**/*.{ts,tsx,js,jsx,json,md}\" \"docs/**/*.{ts,tsx,js,jsx,json,md}\" \"storybook/**/*.{ts,tsx,js,jsx,json,md}\"",
     "format:check": "prettier --check \"packages/**/*.{ts,tsx,js,jsx,json,md}\" \"docs/**/*.{ts,tsx,js,jsx,json,md}\" \"storybook/**/*.{ts,tsx,js,jsx,json,md}\"",
-    "clean": "rm -rf packages/*/dist packages/*/node_modules docs/node_modules storybook/node_modules node_modules .yarn/cache"
+    "clean": "rm -rf packages/*/dist packages/*/node_modules docs/node_modules storybook/node_modules storybook/storybook-static node_modules .yarn/cache"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.11",
