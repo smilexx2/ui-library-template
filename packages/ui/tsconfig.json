@@ -10,8 +10,7 @@
     "declaration": true,
     "declarationMap": true,
     "paths": {
-      "@/*": ["./src/*"],
-      "@smilexx2/ui-core": ["../core/src"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src"],

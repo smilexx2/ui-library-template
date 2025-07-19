@@ -17,7 +17,10 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@smilexx2/ui-core": ["./packages/core/src"],
+      "@smilexx2/ui": ["./packages/ui/src"],
+      "@smilexx2/custom-button": ["./packages/custom-button/src"]
     },
     "types": ["node", "react", "react-dom"]
   },
