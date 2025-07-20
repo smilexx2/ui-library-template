@@ -9,16 +9,20 @@
   ],
   "scripts": {
     "build": "yarn workspaces foreach -A run build",
+    "build:packages": "yarn workspace @smilexx2/ui run build && yarn workspace @smilexx2/custom-button run build",
     "dev:docs": "yarn workspace @smilexx2/ui-library-docs run dev",
     "dev:ui": "yarn workspace @smilexx2/ui run dev",
     "dev:custom-button": "yarn workspace @smilexx2/custom-button run dev",
-    "storybook": "yarn workspace @smilexx2/ui-library-storybook run storybook",
-    "storybook:build": "yarn workspace @smilexx2/ui-library-storybook run build-storybook",
+    "dev:core": "yarn workspace @smilexx2/ui-core run dev",
+    "storybook": "yarn build:packages && yarn workspace @smilexx2/ui-library-storybook run storybook",
+    "storybook:build": "yarn build:packages && yarn workspace @smilexx2/ui-library-storybook run build-storybook",
     "lint": "yarn workspaces foreach -A run lint",
     "lint:fix": "yarn workspaces foreach -A run lint:fix",
     "format": "prettier --write \"packages/**/*.{ts,tsx,js,jsx,json,md}\" \"docs/**/*.{ts,tsx,js,jsx,json,md}\" \"storybook/**/*.{ts,tsx,js,jsx,json,md}\"",
     "format:check": "prettier --check \"packages/**/*.{ts,tsx,js,jsx,json,md}\" \"docs/**/*.{ts,tsx,js,jsx,json,md}\" \"storybook/**/*.{ts,tsx,js,jsx,json,md}\"",
-    "clean": "rm -rf packages/*/dist packages/*/node_modules docs/node_modules storybook/node_modules storybook/storybook-static node_modules .yarn/cache"
+    "typecheck": "yarn workspaces foreach -A run typecheck",
+    "clean": "rm -rf packages/*/dist packages/*/node_modules docs/node_modules storybook/node_modules storybook/storybook-static node_modules .yarn/cache",
+    "deps:check": "yarn dlx npm-check-updates --deep"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.11",

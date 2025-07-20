@@ -1,5 +1,5 @@
-import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
-import * as CustomButtonStories from './CustomButton.stories';
+import { Canvas, Meta } from "@storybook/addon-docs/blocks"
+import * as CustomButtonStories from "./CustomButton.stories"
 
 <Meta title="UI Library/CustomButton/Docs" />
 
@@ -27,14 +27,10 @@ npm install @smilexx2/custom-button
 ## Basic Usage
 
 ```tsx
-import { CustomButton } from '@smilexx2/custom-button'
+import { CustomButton } from "@smilexx2/custom-button"
 
 function App() {
-  return (
-    <CustomButton variant="default">
-      Click me
-    </CustomButton>
-  )
+  return <CustomButton variant="default">Click me</CustomButton>
 }
 ```
 
@@ -115,41 +111,51 @@ Experiment with all the available props:
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `"default" \| "destructive" \| "outline" \| "secondary" \| "ghost" \| "link" \| "gradient" \| "glow" \| "neon"` | `"default"` | The visual style variant of the button |
-| `size` | `"xs" \| "sm" \| "default" \| "lg" \| "xl" \| "icon"` | `"default"` | The size of the button |
-| `animation` | `"none" \| "pulse" \| "bounce" \| "wobble" \| "ripple"` | `"none"` | Animation effect for the button |
-| `loading` | `boolean` | `false` | Shows a loading spinner and disables the button |
-| `ripple` | `boolean` | `false` | Enables ripple effect on click |
-| `disabled` | `boolean` | `false` | Disables the button |
-| `leftIcon` | `ReactNode` | - | Icon to display on the left side of the button |
-| `rightIcon` | `ReactNode` | - | Icon to display on the right side of the button |
+| Prop        | Type              | Default     | Description                                     |
+| ----------- | ----------------- | ----------- | ----------------------------------------------- |
+| `variant`   | `ButtonVariant`   | `"default"` | The visual style variant of the button          |
+| `size`      | `ButtonSize`      | `"default"` | The size of the button                          |
+| `animation` | `ButtonAnimation` | `"none"`    | Animation effect for the button                 |
+| `loading`   | `boolean`         | `false`     | Shows a loading spinner and disables the button |
+| `ripple`    | `boolean`         | `false`     | Enables ripple effect on click                  |
+| `disabled`  | `boolean`         | `false`     | Disables the button                             |
+| `leftIcon`  | `ReactNode`       | `undefined` | Icon to display on the left side of the button  |
+| `rightIcon` | `ReactNode`       | `undefined` | Icon to display on the right side of the button |
+
+### Type Definitions
+
+```tsx
+type ButtonVariant =
+  | "default"
+  | "destructive"
+  | "outline"
+  | "secondary"
+  | "ghost"
+  | "link"
+  | "gradient"
+  | "glow"
+  | "neon"
+
+type ButtonSize = "xs" | "sm" | "default" | "lg" | "xl" | "icon"
+
+type ButtonAnimation = "none" | "pulse" | "bounce" | "wobble" | "ripple"
+```
 
 ## Examples
 
 ### Form Submit Button
 
 ```tsx
-<CustomButton 
-  variant="gradient"
-  size="lg"
-  loading={isSubmitting}
-  onClick={handleSubmit}
->
-  {isSubmitting ? 'Submitting...' : 'Submit Form'}
+<CustomButton variant="gradient" size="lg" loading={isSubmitting} onClick={handleSubmit}>
+  {isSubmitting ? "Submitting..." : "Submit Form"}
 </CustomButton>
 ```
 
 ### Icon Button
 
 ```tsx
-<CustomButton
-  size="icon"
-  variant="ghost"
-  onClick={() => setLiked(!liked)}
->
-  <Heart className={liked ? 'fill-current' : ''} />
+<CustomButton size="icon" variant="ghost" onClick={() => setLiked(!liked)}>
+  <Heart className={liked ? "fill-current" : ""} />
 </CustomButton>
 ```
 
@@ -201,12 +207,12 @@ Migrating from shadcn/ui Button to CustomButton is straightforward:
 
 ```tsx
 // Before
-import { Button } from '@/components/ui/button'
-<Button variant="default">Click me</Button>
+import { Button } from "@/components/ui/button"
+;<Button variant="default">Click me</Button>
 
 // After
-import { CustomButton } from '@smilexx2/custom-button'
-<CustomButton variant="default">Click me</CustomButton>
+import { CustomButton } from "@smilexx2/custom-button"
+;<CustomButton variant="default">Click me</CustomButton>
 ```
 
 All existing props are supported, with additional features available when needed.

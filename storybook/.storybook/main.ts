@@ -1,4 +1,5 @@
 import type { StorybookConfig } from "@storybook/react-vite"
+import remarkGfm from "remark-gfm"
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
@@ -6,7 +7,16 @@ const config: StorybookConfig = {
     "@storybook/addon-links",
     "@storybook/addon-onboarding",
     "@storybook/addon-a11y",
-    "@storybook/addon-docs",
+    {
+      name: "@storybook/addon-docs",
+      options: {
+        mdxPluginOptions: {
+          mdxCompileOptions: {
+            remarkPlugins: [remarkGfm],
+          },
+        },
+      },
+    },
     "@storybook/addon-vitest",
   ],
   framework: {
