@@ -27,18 +27,24 @@ This is a monorepo UI component library template built with:
 
 **📁 Task Files**: [`tasks/phase-1-testing/`](tasks/phase-1-testing/)
 
-1. **Unit Testing Setup** → [`unit-testing-setup.md`](tasks/phase-1-testing/unit-testing-setup.md)
-   - [ ] Add Vitest configuration for all packages
-   - [ ] Setup React Testing Library
-   - [ ] Create test utilities and helpers
-   - [ ] Add example test files for each package
-   - [ ] Configure coverage reporting
+1. **Unit Testing Setup** → [`unit-testing-setup.md`](tasks/phase-1-testing/unit-testing-setup.md) ✅ **Updated**
+   - **4-Phase Implementation Plan**: Foundation setup → Core tests → Workflow integration → Storybook integration
+   - [ ] Phase 1: Vitest + React Testing Library setup with monorepo support (1-2 days)
+   - [ ] Phase 2: Test implementation for cn utility, Button, and CustomButton (1-2 days)
+   - [ ] Phase 3: Package scripts and TypeScript configuration (1 day)
+   - [ ] Phase 4: Real component stories to replace default examples (1 day)
 
-2. **Integration Testing** → [`integration-testing.md`](tasks/phase-1-testing/integration-testing.md)
-   - [ ] Setup Storybook interaction tests
-   - [ ] Add accessibility testing with @axe-core/react
-   - [ ] Configure visual regression testing
-   - [ ] Create E2E tests for documentation site
+2. **Integration Testing** → [`integration-testing.md`](tasks/phase-1-testing/integration-testing.md) ✅ **Updated**
+   - [ ] Enhanced Storybook integration with interaction tests
+   - [ ] Accessibility testing with @storybook/addon-a11y
+   - [ ] Cross-package integration tests for component interoperability
+   - [ ] E2E tests for documentation site and Storybook functionality
+
+3. **Storybook Integration** → [`storybook-integration.md`](tasks/phase-1-testing/storybook-integration.md) ✅ **New**
+   - [ ] Migrate from default Button/Header/Page stories to real components
+   - [ ] Create organized story structure by package (ui-core, ui, custom)
+   - [ ] Add interactive stories with user workflow testing
+   - [ ] Component showcase demonstrating real-world usage patterns
 
 ### Phase 2: CI/CD & Automation
 
