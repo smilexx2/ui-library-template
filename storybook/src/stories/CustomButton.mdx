@@ -1,0 +1,212 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+import * as CustomButtonStories from './CustomButton.stories';
+
+<Meta title="UI Library/CustomButton/Docs" />
+
+# CustomButton
+
+The `CustomButton` component extends the standard button with enhanced visual effects, animations, and additional features while maintaining full compatibility with shadcn/ui design patterns.
+
+## Features
+
+- 🎨 **9 Visual Variants**: Including gradient, glow, and neon effects
+- 📏 **6 Size Options**: From extra small to extra large, plus icon-only
+- ✨ **5 Animation Styles**: Pulse, bounce, wobble, ripple, and more
+- 🔄 **Loading States**: Built-in loading spinner with automatic disabling
+- 🎯 **Icon Support**: Left and right icon slots with automatic sizing
+- 💫 **Ripple Effects**: Optional ripple animation on click
+- ♿ **Accessibility**: Full keyboard navigation and ARIA support
+- 📱 **Responsive**: Mobile-first design approach
+
+## Installation
+
+```bash
+npm install @smilexx2/custom-button
+```
+
+## Basic Usage
+
+```tsx
+import { CustomButton } from '@smilexx2/custom-button'
+
+function App() {
+  return (
+    <CustomButton variant="default">
+      Click me
+    </CustomButton>
+  )
+}
+```
+
+## Variants
+
+### Standard Variants
+
+These variants follow the same design patterns as shadcn/ui buttons:
+
+<Canvas of={CustomButtonStories.Default} />
+<Canvas of={CustomButtonStories.Destructive} />
+<Canvas of={CustomButtonStories.Outline} />
+<Canvas of={CustomButtonStories.Secondary} />
+<Canvas of={CustomButtonStories.Ghost} />
+<Canvas of={CustomButtonStories.Link} />
+
+### Enhanced Variants
+
+These are new variants that add special visual effects:
+
+<Canvas of={CustomButtonStories.Gradient} />
+<Canvas of={CustomButtonStories.Glow} />
+<Canvas of={CustomButtonStories.Neon} />
+
+## Sizes
+
+The button comes in 6 different sizes to fit various use cases:
+
+<Canvas of={CustomButtonStories.ExtraSmall} />
+<Canvas of={CustomButtonStories.Small} />
+<Canvas of={CustomButtonStories.Default} />
+<Canvas of={CustomButtonStories.Large} />
+<Canvas of={CustomButtonStories.ExtraLarge} />
+<Canvas of={CustomButtonStories.Icon} />
+
+## Interactive Features
+
+### Icons
+
+Add icons to either side of your button content:
+
+<Canvas of={CustomButtonStories.WithIcons} />
+
+### Loading State
+
+Show a loading spinner and disable interactions:
+
+<Canvas of={CustomButtonStories.Loading} />
+
+### Ripple Effect
+
+Add a ripple animation on click:
+
+<Canvas of={CustomButtonStories.WithRipple} />
+
+## Animations
+
+Add hover and idle animations to your buttons:
+
+<Canvas of={CustomButtonStories.PulseAnimation} />
+<Canvas of={CustomButtonStories.BounceAnimation} />
+<Canvas of={CustomButtonStories.WobbleAnimation} />
+
+## Combining Features
+
+You can combine multiple features for rich interactions:
+
+<Canvas of={CustomButtonStories.GradientWithRipple} />
+<Canvas of={CustomButtonStories.NeonWithAnimation} />
+
+## Playground
+
+Experiment with all the available props:
+
+<Canvas of={CustomButtonStories.Playground} />
+
+## API Reference
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `"default" \| "destructive" \| "outline" \| "secondary" \| "ghost" \| "link" \| "gradient" \| "glow" \| "neon"` | `"default"` | The visual style variant of the button |
+| `size` | `"xs" \| "sm" \| "default" \| "lg" \| "xl" \| "icon"` | `"default"` | The size of the button |
+| `animation` | `"none" \| "pulse" \| "bounce" \| "wobble" \| "ripple"` | `"none"` | Animation effect for the button |
+| `loading` | `boolean` | `false` | Shows a loading spinner and disables the button |
+| `ripple` | `boolean` | `false` | Enables ripple effect on click |
+| `disabled` | `boolean` | `false` | Disables the button |
+| `leftIcon` | `ReactNode` | - | Icon to display on the left side of the button |
+| `rightIcon` | `ReactNode` | - | Icon to display on the right side of the button |
+
+## Examples
+
+### Form Submit Button
+
+```tsx
+<CustomButton 
+  variant="gradient"
+  size="lg"
+  loading={isSubmitting}
+  onClick={handleSubmit}
+>
+  {isSubmitting ? 'Submitting...' : 'Submit Form'}
+</CustomButton>
+```
+
+### Icon Button
+
+```tsx
+<CustomButton
+  size="icon"
+  variant="ghost"
+  onClick={() => setLiked(!liked)}
+>
+  <Heart className={liked ? 'fill-current' : ''} />
+</CustomButton>
+```
+
+### Call to Action
+
+```tsx
+<CustomButton
+  variant="glow"
+  size="xl"
+  animation="pulse"
+  leftIcon={<Rocket />}
+  onClick={handleGetStarted}
+>
+  Get Started
+</CustomButton>
+```
+
+## Accessibility
+
+The CustomButton component follows WAI-ARIA best practices:
+
+- Proper `button` role
+- Keyboard navigation support (Space/Enter to activate)
+- Focus indicators
+- Disabled state handling
+- Loading state announcements
+- ARIA labels support
+
+## Styling
+
+The component uses Tailwind CSS v4 and CSS custom properties for theming. All styles are automatically included when you import the component.
+
+### Customizing Colors
+
+You can customize the button colors using CSS variables in your global styles:
+
+```css
+:root {
+  --gradient-from: rgb(59, 130, 246);
+  --gradient-to: rgb(147, 51, 234);
+  --glow-color: rgb(59, 130, 246);
+  --neon-color: rgb(34, 211, 238);
+}
+```
+
+## Migration from Standard Button
+
+Migrating from shadcn/ui Button to CustomButton is straightforward:
+
+```tsx
+// Before
+import { Button } from '@/components/ui/button'
+<Button variant="default">Click me</Button>
+
+// After
+import { CustomButton } from '@smilexx2/custom-button'
+<CustomButton variant="default">Click me</CustomButton>
+```
+
+All existing props are supported, with additional features available when needed.
