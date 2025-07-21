@@ -1,7 +1,4 @@
-/* Import shared theme styles from ui-theme package */
-@import "../../../ui-theme/src/styles/index.css";
-
-/* Custom button specific styles */
+/* Custom button specific animations and styles only */
 @keyframes ripple {
   to {
     transform: scale(4);
@@ -10,8 +7,7 @@
 }
 
 @keyframes glow-pulse {
-  0%,
-  100% {
+  0%, 100% {
     opacity: 1;
   }
   50% {
@@ -20,8 +16,7 @@
 }
 
 @keyframes neon-flicker {
-  0%,
-  100% {
+  0%, 100% {
     opacity: 1;
   }
   33% {

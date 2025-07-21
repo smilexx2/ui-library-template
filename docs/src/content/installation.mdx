@@ -10,8 +10,16 @@ Before installing the UI Library, make sure you have the following:
 
 ## Install the Library
 
+Install the custom button component:
+
 ```bash
-npm install @smilexx2/ui-library
+npm install @smilexx2/custom-button
+```
+
+For utility functions (optional):
+
+```bash
+npm install @smilexx2/ui-core
 ```
 
 ## Setup Tailwind CSS
@@ -30,7 +38,8 @@ Add the library's styles to your Tailwind config:
 module.exports = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/@smilexx2/ui-library/dist/**/*.js"
+    "./node_modules/@smilexx2/custom-button/dist/**/*.js",
+    "./node_modules/@smilexx2/ui-core/dist/**/*.js" // if using utilities
   ],
   theme: {
     extend: {},
@@ -44,12 +53,16 @@ module.exports = {
 Once installed, you can import and use components in your React application:
 
 ```tsx
-import { /* Components will be added here */ } from '@smilexx2/ui-library'
+import { CustomButton } from '@smilexx2/custom-button'
+// Optional: import utilities
+import { cn } from '@smilexx2/ui-core'
 
 function MyApp() {
   return (
-    <div>
-      {/* Components will be used here */}
+    <div className="p-4 space-y-4">
+      <CustomButton variant="default">Click me</CustomButton>
+      <CustomButton variant="outline">Enhanced button</CustomButton>
+      <CustomButton variant="secondary">Secondary button</CustomButton>
     </div>
   )
 }

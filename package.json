@@ -9,11 +9,12 @@
   ],
   "scripts": {
     "build": "yarn workspaces foreach -A run build",
-    "build:packages": "yarn workspace @smilexx2/ui run build && yarn workspace @smilexx2/custom-button run build",
+    "build:packages": "yarn workspace @smilexx2/ui-core run build && yarn workspace @smilexx2/ui-theme run build && yarn workspace @smilexx2/ui run build && yarn workspace @smilexx2/custom-button run build",
     "dev:docs": "yarn workspace @smilexx2/ui-library-docs run dev",
     "dev:ui": "yarn workspace @smilexx2/ui run dev",
     "dev:custom-button": "yarn workspace @smilexx2/custom-button run dev",
     "dev:core": "yarn workspace @smilexx2/ui-core run dev",
+    "dev:theme": "yarn workspace @smilexx2/ui-theme run dev",
     "storybook": "yarn build:packages && yarn workspace @smilexx2/ui-library-storybook run storybook",
     "storybook:build": "yarn build:packages && yarn workspace @smilexx2/ui-library-storybook run build-storybook",
     "lint": "yarn workspaces foreach -A run lint",

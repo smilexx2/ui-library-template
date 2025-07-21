@@ -1,3 +1,0 @@
-/* Import compiled CSS from packages */
-@import "../../packages/ui/dist/index.css";
-@import "../../packages/custom-button/dist/styles/index.css";

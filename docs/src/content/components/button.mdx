@@ -1,0 +1,133 @@
+# Custom Button
+
+An enhanced button component with additional features and animations that extends the standard button functionality.
+
+## Installation
+
+```bash
+npm install @smilexx2/custom-button
+```
+
+## Usage
+
+The CustomButton component provides enhanced features with smooth animations and additional styling options.
+
+```tsx
+import { CustomButton } from '@smilexx2/custom-button';
+
+<CustomButton variant="default">Click me</CustomButton>
+<CustomButton variant="secondary">Secondary Action</CustomButton>
+<CustomButton variant="outline">Outline Style</CustomButton>
+```
+
+### Live Examples
+
+<div className="flex flex-wrap gap-2 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+  <CustomButton variant="default">Default Button</CustomButton>
+  <CustomButton variant="secondary">Secondary Button</CustomButton>
+  <CustomButton variant="outline">Outline Button</CustomButton>
+</div>
+
+## Sizes
+
+CustomButton supports multiple sizes for different use cases.
+
+```tsx
+<CustomButton size="sm">Small Button</CustomButton>
+<CustomButton size="default">Default Button</CustomButton>
+<CustomButton size="lg">Large Button</CustomButton>
+```
+
+### Size Examples
+
+<div className="flex items-center gap-2 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+  <CustomButton size="sm">Small</CustomButton>
+  <CustomButton size="default">Default</CustomButton>
+  <CustomButton size="lg">Large</CustomButton>
+</div>
+
+## API Reference
+
+### CustomButton Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `"default" \| "secondary" \| "outline"` | `"default"` | The visual style variant |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` | The size of the button |
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode` | - | Button content |
+| `disabled` | `boolean` | `false` | Disable the button |
+| `onClick` | `() => void` | - | Click handler |
+
+## Examples
+
+### With Icons
+
+```tsx
+<CustomButton>
+  <span className="mr-2">✨</span>
+  Create New
+</CustomButton>
+
+<CustomButton variant="outline">
+  <span className="mr-2">📁</span>
+  Browse Files
+</CustomButton>
+```
+
+<div className="flex gap-2 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+  <CustomButton>
+    <span className="mr-2">✨</span>
+    Create New
+  </CustomButton>
+  <CustomButton variant="outline">
+    <span className="mr-2">📁</span>
+    Browse Files
+  </CustomButton>
+</div>
+
+### Loading State
+
+```tsx
+<CustomButton disabled>
+  <Spinner size="sm" />
+  <span className="ml-2">Processing...</span>
+</CustomButton>
+```
+
+<div className="flex gap-2 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+  <CustomButton disabled>
+    <Spinner size="sm" />
+    <span className="ml-2">Processing...</span>
+  </CustomButton>
+</div>
+
+### Button Group
+
+```tsx
+<div className="flex gap-2">
+  <CustomButton variant="outline">Cancel</CustomButton>
+  <CustomButton>Save Changes</CustomButton>
+</div>
+```
+
+<div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+  <div className="flex gap-2">
+    <CustomButton variant="outline">Cancel</CustomButton>
+    <CustomButton>Save Changes</CustomButton>
+  </div>
+</div>
+
+## Features
+
+- **Enhanced Animations**: Smooth hover and active state transitions
+- **TypeScript Support**: Full type safety with TypeScript definitions
+- **Accessible**: ARIA compliant with keyboard navigation support
+- **Customizable**: Supports className prop for additional styling
+- **Theme Compatible**: Works with your existing theme system
+
+## Styling
+
+The CustomButton component automatically includes all necessary styles when imported. It uses CSS variables for theming and will automatically adapt to your application's color scheme.
+
+No additional CSS imports are required - the component is completely self-contained.
