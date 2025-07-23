@@ -22,7 +22,7 @@ import { CustomButton } from '@smilexx2/custom-button';
 
 ### Live Examples
 
-<div className="flex flex-wrap gap-2 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+<div className="flex flex-wrap gap-2 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg mt-4">
   <CustomButton variant="default">Default Button</CustomButton>
   <CustomButton variant="secondary">Secondary Button</CustomButton>
   <CustomButton variant="outline">Outline Button</CustomButton>
@@ -40,7 +40,7 @@ CustomButton supports multiple sizes for different use cases.
 
 ### Size Examples
 
-<div className="flex items-center gap-2 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+<div className="flex items-center gap-2 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg mt-4">
   <CustomButton size="sm">Small</CustomButton>
   <CustomButton size="default">Default</CustomButton>
   <CustomButton size="lg">Large</CustomButton>
@@ -52,8 +52,13 @@ CustomButton supports multiple sizes for different use cases.
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `variant` | `"default" \| "secondary" \| "outline"` | `"default"` | The visual style variant |
-| `size` | `"sm" \| "default" \| "lg"` | `"default"` | The size of the button |
+| `variant` | `"default" \| "secondary" \| "outline" \| "destructive" \| "ghost" \| "link" \| "gradient" \| "glow" \| "neon"` | `"default"` | The visual style variant |
+| `size` | `"xs" \| "sm" \| "default" \| "lg" \| "xl" \| "icon"` | `"default"` | The size of the button |
+| `animation` | `"none" \| "pulse" \| "bounce" \| "wobble" \| "ripple"` | `"none"` | Animation type |
+| `loading` | `boolean` | `false` | Show loading spinner and disable button |
+| `leftIcon` | `ReactNode` | - | Icon to display on the left |
+| `rightIcon` | `ReactNode` | - | Icon to display on the right |
+| `ripple` | `boolean` | `false` | Enable ripple effect on click |
 | `className` | `string` | - | Additional CSS classes |
 | `children` | `ReactNode` | - | Button content |
 | `disabled` | `boolean` | `false` | Disable the button |
@@ -64,42 +69,32 @@ CustomButton supports multiple sizes for different use cases.
 ### With Icons
 
 ```tsx
-<CustomButton>
-  <span className="mr-2">✨</span>
-  Create New
+<CustomButton leftIcon={<Heart className="h-4 w-4" />}>
+  Like
 </CustomButton>
 
-<CustomButton variant="outline">
-  <span className="mr-2">📁</span>
-  Browse Files
+<CustomButton variant="outline" rightIcon={<Download className="h-4 w-4" />}>
+  Download
 </CustomButton>
 ```
 
 <div className="flex gap-2 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
-  <CustomButton>
-    <span className="mr-2">✨</span>
-    Create New
+  <CustomButton leftIcon={<span>❤️</span>}>
+    Like
   </CustomButton>
-  <CustomButton variant="outline">
-    <span className="mr-2">📁</span>
-    Browse Files
+  <CustomButton variant="outline" rightIcon={<span>📁</span>}>
+    Download
   </CustomButton>
 </div>
 
 ### Loading State
 
 ```tsx
-<CustomButton disabled>
-  <Spinner size="sm" />
-  <span className="ml-2">Processing...</span>
-</CustomButton>
+<CustomButton loading>Processing...</CustomButton>
 ```
 
 <div className="flex gap-2 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
-  <CustomButton disabled>
-    <Spinner size="sm" />
-    <span className="ml-2">Processing...</span>
-  </CustomButton>
+  <CustomButton loading>Processing...</CustomButton>
 </div>
 
 ### Button Group
@@ -125,6 +120,9 @@ CustomButton supports multiple sizes for different use cases.
 - **Accessible**: ARIA compliant with keyboard navigation support
 - **Customizable**: Supports className prop for additional styling
 - **Theme Compatible**: Works with your existing theme system
+- **Loading States**: Built-in loading spinner with automatic disabling
+- **Ripple Effects**: Optional click ripple animation
+- **Icon Support**: Easy left and right icon placement
 
 ## Styling
 
