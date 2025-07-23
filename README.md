@@ -63,34 +63,26 @@ const { cn } = require('@smilexx2/ui-core')
 ### @smilexx2/ui
 
 ```typescript
-// Main export - all components
+// Main export - all components (styles auto-injected)
 import { Button, buttonVariants } from '@smilexx2/ui'
-import '@smilexx2/ui/styles.css'
 
-// Subpath export - individual components for tree-shaking
+// Subpath export - individual components (tree-shaking, styles auto-injected)
 import { Button } from '@smilexx2/ui/button'
 
-// CSS import
-import '@smilexx2/ui/styles.css'
-
-// CommonJS
+// CommonJS (styles auto-injected)
 const { Button } = require('@smilexx2/ui')
 ```
 
 ### @smilexx2/custom-button
 
 ```typescript
-// Main export
+// Main export (styles auto-injected)
 import { CustomButton } from '@smilexx2/custom-button'
-import '@smilexx2/custom-button/styles.css'
 
-// Direct component import
+// Direct component import (styles auto-injected)
 import { CustomButton } from '@smilexx2/custom-button/custom-button'
 
-// CSS import
-import '@smilexx2/custom-button/styles.css'
-
-// CommonJS
+// CommonJS (styles auto-injected)
 const { CustomButton } = require('@smilexx2/custom-button')
 ```
 
@@ -102,8 +94,7 @@ import React from "react"
 import { cn } from "@smilexx2/ui-core"
 import { Button, buttonVariants } from "@smilexx2/ui"
 import { CustomButton } from "@smilexx2/custom-button"
-import "@smilexx2/ui/styles.css"
-import "@smilexx2/custom-button/styles.css"
+import "@smilexx2/ui-theme/styles.css"
 
 function App() {
   return (

@@ -64,8 +64,7 @@ import type { ButtonProps } from '@smilexx2/ui'
 import { Button, buttonVariants } from '@smilexx2/ui/button'
 import type { ButtonProps } from '@smilexx2/ui/button'
 
-// CSS styles
-import '@smilexx2/ui/styles.css'
+// Styles are auto-injected
 
 // CommonJS
 const { Button, buttonVariants } = require('@smilexx2/ui')
@@ -88,11 +87,6 @@ const { Button } = require('@smilexx2/ui/button')
       "require": "./dist/components/ui/button.cjs",
       "default": "./dist/components/ui/button.js"
     },
-    "./styles.css": {
-      "import": "./dist/index.css",
-      "require": "./dist/index.css",
-      "default": "./dist/index.css"
-    },
     "./package.json": "./package.json"
   }
 }
@@ -105,16 +99,13 @@ Enhanced button component with additional features and animations.
 ### Available Exports
 
 ```typescript
-// Main export
+// Main export (styles auto-injected)
 import { CustomButton } from '@smilexx2/custom-button'
 
-// Direct component import (tree-shaking)
+// Direct component import (tree-shaking, styles auto-injected)
 import { CustomButton } from '@smilexx2/custom-button/custom-button'
 
-// CSS styles
-import '@smilexx2/custom-button/styles.css'
-
-// CommonJS
+// CommonJS (styles auto-injected)
 const { CustomButton } = require('@smilexx2/custom-button')
 const { CustomButton } = require('@smilexx2/custom-button/custom-button')
 ```
@@ -134,11 +125,6 @@ const { CustomButton } = require('@smilexx2/custom-button/custom-button')
       "import": "./dist/components/custom-button.js",
       "require": "./dist/components/custom-button.cjs",
       "default": "./dist/components/custom-button.js"
-    },
-    "./styles.css": {
-      "import": "./dist/styles/index.css",
-      "require": "./dist/styles/index.css",
-      "default": "./dist/styles/index.css"
     },
     "./package.json": "./package.json"
   }
@@ -170,19 +156,18 @@ import { CustomButton } from '@smilexx2/custom-button'
 Each package provides its own CSS that can be imported separately:
 
 ```typescript
-// Import all styles (recommended for most use cases)
-import '@smilexx2/ui/styles.css'
-import '@smilexx2/custom-button/styles.css'
+// Import base theme styles (component styles are auto-injected)
+import '@smilexx2/ui-theme/styles.css'
 
 // Or in your CSS file
-@import '@smilexx2/ui/styles.css';
-@import '@smilexx2/custom-button/styles.css';
+@import '@smilexx2/ui-theme/styles.css';
 ```
 
 ### CSS Contents
 
-- **@smilexx2/ui/styles.css**: Tailwind CSS v4 base styles, design tokens, and component styles
-- **@smilexx2/custom-button/styles.css**: Additional styles for custom button animations and variants
+- **@smilexx2/ui-theme/styles.css**: Tailwind CSS v4 base styles, design tokens, and theme variables
+- **@smilexx2/ui**: Component styles are automatically injected when importing components
+- **@smilexx2/custom-button**: Styles are automatically injected when importing the component
 
 ## Module Resolution
 
@@ -204,9 +189,8 @@ import { cn } from '@smilexx2/ui-core'
 import { Button, buttonVariants } from '@smilexx2/ui'
 import { CustomButton } from '@smilexx2/custom-button'
 
-// Import styles
-import '@smilexx2/ui/styles.css'
-import '@smilexx2/custom-button/styles.css'
+// Import base theme (component styles auto-injected)
+import '@smilexx2/ui-theme/styles.css'
 
 export function App() {
   return (
@@ -236,9 +220,8 @@ import { cn } from '@smilexx2/ui-core/utils'
 import { Button } from '@smilexx2/ui/button'
 import { CustomButton } from '@smilexx2/custom-button/custom-button'
 
-// Still import CSS as needed
-import '@smilexx2/ui/styles.css'
-import '@smilexx2/custom-button/styles.css'
+// Import base theme (component styles auto-injected)
+import '@smilexx2/ui-theme/styles.css'
 ```
 
 ## Migration Guide
@@ -257,7 +240,7 @@ import { Button } from '@smilexx2/ui/button'
 // All of these now work
 import { Button, buttonVariants } from '@smilexx2/ui'
 import { Button } from '@smilexx2/ui/button'
-import '@smilexx2/ui/styles.css'
+import '@smilexx2/ui-theme/styles.css'
 
 // Plus CommonJS support
 const { Button } = require('@smilexx2/ui')
