@@ -22,11 +22,31 @@ import { CustomButton } from '@smilexx2/custom-button';
 
 ### Live Examples
 
-<div className="flex flex-wrap gap-2 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg mt-4">
-  <CustomButton variant="default">Default Button</CustomButton>
-  <CustomButton variant="secondary">Secondary Button</CustomButton>
-  <CustomButton variant="outline">Outline Button</CustomButton>
-</div>
+Try editing the code below to see the changes in real-time:
+
+<LiveCodeBlock
+  code={`() => {
+  const [count, setCount] = React.useState(0)
+  
+  return (
+    <div className="flex flex-wrap gap-2">
+      <CustomButton 
+        variant="default" 
+        onClick={() => setCount(count + 1)}
+      >
+        Clicked {count} times
+      </CustomButton>
+      <CustomButton variant="secondary">
+        Secondary Button
+      </CustomButton>
+      <CustomButton variant="outline">
+        Outline Button
+      </CustomButton>
+    </div>
+  )
+}`}
+  className="my-4"
+/>
 
 ## Sizes
 
