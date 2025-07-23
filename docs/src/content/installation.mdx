@@ -10,12 +10,11 @@ Before installing, ensure your project meets these requirements:
 - **React** 18.0 or later (React 19 compatible)
 - **React DOM** 18.0 or later
 
-### Required if using shadcn/ui
+### Optional shadcn/ui Integration
 
-This library extends shadcn/ui, so you'll need:
-- shadcn/ui components installed
-- Tailwind CSS configured
-- Required shadcn/ui dependencies
+This library is designed to work seamlessly with shadcn/ui, but it's not required. The components work standalone. If you want shadcn/ui integration:
+- Install shadcn/ui components as needed
+- The libraries share the same design principles and will work together
 
 ## Package Installation
 
@@ -51,47 +50,16 @@ Enhanced components with additional features.
 npm install @smilexx2/ui-core @smilexx2/ui @smilexx2/custom-button
 ```
 
-## Tailwind CSS Configuration
+## Optional: Tailwind CSS Integration
 
-### For Tailwind CSS v4 (Latest)
-
-If you're using Tailwind CSS v4, add the library paths to your CSS:
+The component library works perfectly without Tailwind CSS - all components come with their own styles. However, if you want to use Tailwind utility classes for additional customization, you can optionally install and configure Tailwind CSS v4:
 
 ```css
-/* app.css or globals.css */
+/* app.css or globals.css - Only needed if you want Tailwind utilities */
 @import "tailwindcss";
-@import "@smilexx2/ui/styles.css";
-@import "@smilexx2/custom-button/styles.css";
 ```
 
-### For Tailwind CSS v3
 
-Add the library paths to your content configuration:
-
-```js
-// tailwind.config.js
-module.exports = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@smilexx2/ui/dist/**/*.{js,cjs}",
-    "./node_modules/@smilexx2/custom-button/dist/**/*.{js,cjs}"
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-}
-```
-
-## Import Styles
-
-Don't forget to import the component styles in your app:
-
-```tsx
-// In your root component or CSS file
-import '@smilexx2/ui/styles.css'
-import '@smilexx2/custom-button/styles.css'
-```
 
 ## Basic Usage
 
@@ -100,22 +68,17 @@ Here's a complete example to get you started:
 ```tsx
 // App.tsx
 import React from 'react'
-import { cn } from '@smilexx2/ui-core'
 import { Button } from '@smilexx2/ui'
 import { CustomButton } from '@smilexx2/custom-button'
 
-// Import styles
-import '@smilexx2/ui/styles.css'
-import '@smilexx2/custom-button/styles.css'
-
 function App() {
   return (
-    <div className={cn("min-h-screen p-8")}>
-      <h1 className="text-2xl font-bold mb-6">
+    <div style={{ minHeight: '100vh', padding: '2rem' }}>
+      <h1 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem' }}>
         My App with @smilexx2 UI
       </h1>
       
-      <div className="space-y-4">
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         <Button variant="default">
           Standard Button
         </Button>
@@ -134,35 +97,57 @@ function App() {
 export default App
 ```
 
-## TypeScript Support
+### With Tailwind CSS (Optional)
 
-All packages include TypeScript definitions. For the best experience:
+If you have Tailwind CSS installed, you can also use utility classes:
 
-```json
-// tsconfig.json
-{
-  "compilerOptions": {
-    "moduleResolution": "bundler", // or "node16", "nodenext"
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
-  }
+```tsx
+// App.tsx with Tailwind utilities
+import React from 'react'
+import { cn } from '@smilexx2/ui-core'
+import { Button } from '@smilexx2/ui'
+import { CustomButton } from '@smilexx2/custom-button'
+
+function App() {
+  return (
+    <div className={cn("min-h-screen p-8")}>
+      <h1 className="text-2xl font-bold mb-6">
+        My App with @smilexx2 UI + Tailwind
+      </h1>
+      
+      <div className="space-y-4">
+        <Button variant="default" className="w-full">
+          Full Width Button
+        </Button>
+        
+        <CustomButton 
+          variant="outline" 
+          leftIcon={<span>🚀</span>}
+          className="bg-blue-50 hover:bg-blue-100"
+        >
+          Enhanced Button with Custom Styling
+        </CustomButton>
+      </div>
+    </div>
+  )
 }
+
+export default App
 ```
+
 
 ## Peer Dependencies
 
-The library has the following peer dependencies that should already be in your project:
+The library has minimal peer dependencies - only React is required:
 
 ```json
 {
   "react": "^18.0.0 || ^19.0.0",
-  "react-dom": "^18.0.0 || ^19.0.0",
-  "@radix-ui/react-slot": "^1.0.0",
-  "class-variance-authority": "^0.7.0",
-  "clsx": "^2.0.0",
-  "tailwind-merge": "^2.0.0"
+  "react-dom": "^18.0.0 || ^19.0.0"
 }
 ```
+
+**Note**: All other dependencies like `@radix-ui/react-slot`, `class-variance-authority`, `clsx`, and `tailwind-merge` are included as regular dependencies, so you don't need to install them separately.
 
 ## Verification
 
@@ -221,11 +206,11 @@ If you encounter import errors:
 
 ### Style Issues
 
-If styles aren't applying:
+If component styles aren't applying:
 
-1. Verify you've imported the CSS files
-2. Check your Tailwind configuration includes the library paths
-3. Ensure your bundler processes CSS imports
+1. Verify your bundler supports CSS processing
+2. Check that the component packages are properly installed
+3. Ensure your build process includes the component files
 
 ### TypeScript Errors
 
@@ -235,53 +220,6 @@ If you see type errors:
 2. Check that all peer dependencies are installed
 3. Restart your TypeScript server in your IDE
 
-## Theme Configuration
-
-### Dark Mode Support
-
-This documentation site and the component library fully support dark mode through multiple detection methods:
-
-#### Nextra Theme Configuration
-
-The docs are configured with automatic theme switching:
-
-```tsx
-// layout.tsx
-<Layout
-  darkMode={true}                    // Enable dark mode toggle
-  nextThemes={{                      // next-themes configuration
-    defaultTheme: 'system',          // Default to system preference
-    storageKey: 'nextra-theme'       // LocalStorage key
-  }}
-  // ... other layout options
->
-```
-
-#### CSS Variables
-
-Our CSS uses comprehensive theme variables that work with multiple dark mode approaches:
-
-```css
-/* System preference */
-@media (prefers-color-scheme: dark) { /* ... */ }
-
-/* Class-based (next-themes, manual toggle) */
-.dark { /* ... */ }
-
-/* Data attribute (compatibility) */
-[data-theme="dark"] { /* ... */ }
-```
-
-#### Component Integration
-
-Components automatically sync with the current theme using:
-
-- **Direct integration with next-themes** - Components use `useTheme()` hook for real-time theme detection
-- **Automatic theme switching** - No manual observers or localStorage listeners needed
-- **System preference support** - Respects user's system theme preference
-- **Manual theme override** - Supports explicit light/dark mode selection
-
-This ensures seamless compatibility with shadcn/ui, next-themes, and system preferences while providing a clean, maintainable codebase.
 
 ## Next Steps
 
