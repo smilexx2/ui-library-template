@@ -1,24 +1,156 @@
-# Components
+# Component Library
 
-Welcome to the components section! This library is currently being built from scratch.
+Explore our growing collection of React components designed to extend and enhance your UI development.
 
-## Coming Soon
+## Featured Components
 
-Components will be added here as they are developed. Each component will include:
+<div className="grid gap-4 mt-6">
+  <div className="group relative overflow-hidden rounded-lg border p-6 hover:shadow-lg transition-shadow">
+    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+    <h3 className="text-xl font-bold mb-2">Custom Button</h3>
+    <p className="text-gray-600 dark:text-gray-400 mb-4">
+      Enhanced button component with animations, loading states, and icon support.
+    </p>
+    <div className="flex items-center gap-3 mb-4">
+      <CustomButton size="sm" variant="default">Default</CustomButton>
+      <CustomButton size="sm" variant="outline" leftIcon={<span>✨</span>}>
+        With Icon
+      </CustomButton>
+      <CustomButton size="sm" loading>
+        Loading
+      </CustomButton>
+    </div>
+    <a href="/components/button" className="text-blue-600 dark:text-blue-400 font-medium hover:underline">
+      View Documentation →
+    </a>
+  </div>
+</div>
 
-- **Live Examples** - Interactive demos showing the component in action
-- **API Documentation** - Complete prop definitions and usage examples
-- **Accessibility Guidelines** - Best practices for keyboard navigation and screen readers
-- **Styling Information** - How to customize and theme the component
+## Quick Demo
 
-## Component Development
+Experience our components with this interactive playground:
 
-When components are added, they will follow these principles:
+<LiveCodeBlock
+  code={`() => {
+  const [theme, setTheme] = React.useState('light')
+  const [count, setCount] = React.useState(0)
+  
+  return (
+    <div className={\`p-6 rounded-lg \${
+      theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-50'
+    }\`}>
+      <div className="flex justify-between items-center mb-6">
+        <h3 className="text-lg font-semibold">Interactive Demo</h3>
+        <button
+          onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+          className="text-sm px-3 py-1 rounded border"
+        >
+          {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
+        </button>
+      </div>
+      
+      <div className="space-y-4">
+        <p className="text-sm opacity-75">
+          You've clicked the button {count} times
+        </p>
+        
+        <div className="flex flex-wrap gap-2">
+          <CustomButton 
+            onClick={() => setCount(count + 1)}
+            variant="default"
+          >
+            Click me!
+          </CustomButton>
+          
+          <CustomButton 
+            onClick={() => setCount(0)}
+            variant="outline"
+            disabled={count === 0}
+          >
+            Reset
+          </CustomButton>
+          
+          <CustomButton 
+            variant="secondary"
+            leftIcon={<span>🎯</span>}
+          >
+            Target: {count > 9 ? '✅' : '10 clicks'}
+          </CustomButton>
+        </div>
+        
+        {count > 9 && (
+          <p className="text-sm text-green-600 dark:text-green-400">
+            🎉 Achievement unlocked!
+          </p>
+        )}
+      </div>
+    </div>
+  )
+}`}
+  className="my-6"
+/>
 
-- **Accessibility First** - All components will be keyboard navigable and screen reader friendly
-- **TypeScript Native** - Full type safety with comprehensive prop definitions
-- **Responsive Design** - Mobile-first approach with responsive breakpoints
-- **Theme Support** - Customizable styling with Tailwind CSS
-- **Modern React** - Using React hooks and modern patterns
+## Development Roadmap
 
-Stay tuned for new components!
+### ✅ Currently Available
+- **Custom Button** - Feature-rich button component with multiple variants
+
+### 🚧 In Development
+- **Input Components** - Text inputs, textareas, and form controls
+- **Card** - Flexible container component
+- **Modal/Dialog** - Accessible modal dialogs
+
+### 📋 Planned Components
+- **Data Table** - Sortable, filterable data tables
+- **Date Picker** - Calendar date selection
+- **Dropdown Menu** - Accessible dropdown menus
+- **Toast/Notification** - Alert notifications
+- **Tabs** - Tab navigation component
+- **Accordion** - Collapsible content sections
+
+## Component Guidelines
+
+All our components follow strict guidelines to ensure quality:
+
+### Accessibility
+- Full keyboard navigation support
+- ARIA labels and roles
+- Focus management
+- Screen reader compatibility
+
+### Performance
+- Optimized bundle sizes
+- Tree-shakeable exports
+- Lazy loading support
+- Minimal runtime overhead
+
+### Developer Experience
+- TypeScript definitions
+- Comprehensive prop documentation
+- Interactive examples
+- Copy-paste friendly code
+
+## Getting Started
+
+To start using our components:
+
+1. Install the packages you need
+2. Import the components and styles
+3. Use them in your React application
+
+```tsx
+import { CustomButton } from '@smilexx2/custom-button'
+import '@smilexx2/custom-button/styles.css'
+
+function App() {
+  return (
+    <CustomButton variant="default">
+      Get Started
+    </CustomButton>
+  )
+}
+```
+
+---
+
+Browse individual component documentation for detailed usage examples and API references.

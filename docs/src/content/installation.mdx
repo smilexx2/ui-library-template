@@ -1,45 +1,80 @@
 # Installation
 
+Get started with @smilexx2 UI Library in your React project.
+
 ## Prerequisites
 
-Before installing the UI Library, make sure you have the following:
+Before installing, ensure your project meets these requirements:
 
-- **Node.js** 16.8 or later
-- **React** 16.8 or later
-- **React DOM** 16.8 or later
+- **Node.js** 18.0 or later
+- **React** 18.0 or later (React 19 compatible)
+- **React DOM** 18.0 or later
 
-## Install the Library
+### Required if using shadcn/ui
 
-Install the custom button component:
+This library extends shadcn/ui, so you'll need:
+- shadcn/ui components installed
+- Tailwind CSS configured
+- Required shadcn/ui dependencies
 
-```bash
-npm install @smilexx2/custom-button
-```
+## Package Installation
 
-For utility functions (optional):
+Our library is modular - install only what you need:
+
+### Core Utilities
 
 ```bash
 npm install @smilexx2/ui-core
 ```
 
-## Setup Tailwind CSS
+Provides the `cn` utility function for className management.
 
-This library uses Tailwind CSS for styling. Make sure you have Tailwind CSS installed and configured in your project.
+### UI Components
 
 ```bash
-npm install -D tailwindcss
-npx tailwindcss init
+npm install @smilexx2/ui
 ```
 
-Add the library's styles to your Tailwind config:
+shadcn/ui compatible components with consistent styling.
+
+### Custom Components
+
+```bash
+npm install @smilexx2/custom-button
+```
+
+Enhanced components with additional features.
+
+### Install Everything
+
+```bash
+npm install @smilexx2/ui-core @smilexx2/ui @smilexx2/custom-button
+```
+
+## Tailwind CSS Configuration
+
+### For Tailwind CSS v4 (Latest)
+
+If you're using Tailwind CSS v4, add the library paths to your CSS:
+
+```css
+/* app.css or globals.css */
+@import "tailwindcss";
+@import "@smilexx2/ui/styles.css";
+@import "@smilexx2/custom-button/styles.css";
+```
+
+### For Tailwind CSS v3
+
+Add the library paths to your content configuration:
 
 ```js
 // tailwind.config.js
 module.exports = {
   content: [
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/@smilexx2/custom-button/dist/**/*.js",
-    "./node_modules/@smilexx2/ui-core/dist/**/*.js" // if using utilities
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@smilexx2/ui/dist/**/*.{js,cjs}",
+    "./node_modules/@smilexx2/custom-button/dist/**/*.{js,cjs}"
   ],
   theme: {
     extend: {},
@@ -48,26 +83,160 @@ module.exports = {
 }
 ```
 
-## Usage
+## Import Styles
 
-Once installed, you can import and use components in your React application:
+Don't forget to import the component styles in your app:
 
 ```tsx
-import { CustomButton } from '@smilexx2/custom-button'
-// Optional: import utilities
-import { cn } from '@smilexx2/ui-core'
+// In your root component or CSS file
+import '@smilexx2/ui/styles.css'
+import '@smilexx2/custom-button/styles.css'
+```
 
-function MyApp() {
+## Basic Usage
+
+Here's a complete example to get you started:
+
+```tsx
+// App.tsx
+import React from 'react'
+import { cn } from '@smilexx2/ui-core'
+import { Button } from '@smilexx2/ui'
+import { CustomButton } from '@smilexx2/custom-button'
+
+// Import styles
+import '@smilexx2/ui/styles.css'
+import '@smilexx2/custom-button/styles.css'
+
+function App() {
   return (
-    <div className="p-4 space-y-4">
-      <CustomButton variant="default">Click me</CustomButton>
-      <CustomButton variant="outline">Enhanced button</CustomButton>
-      <CustomButton variant="secondary">Secondary button</CustomButton>
+    <div className={cn("min-h-screen p-8")}>
+      <h1 className="text-2xl font-bold mb-6">
+        My App with @smilexx2 UI
+      </h1>
+      
+      <div className="space-y-4">
+        <Button variant="default">
+          Standard Button
+        </Button>
+        
+        <CustomButton 
+          variant="outline" 
+          leftIcon={<span>🚀</span>}
+        >
+          Enhanced Button
+        </CustomButton>
+      </div>
     </div>
   )
 }
+
+export default App
 ```
 
 ## TypeScript Support
 
-The library is written in TypeScript and includes full type definitions. No additional setup is required for TypeScript projects.
+All packages include TypeScript definitions. For the best experience:
+
+```json
+// tsconfig.json
+{
+  "compilerOptions": {
+    "moduleResolution": "bundler", // or "node16", "nodenext"
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
+  }
+}
+```
+
+## Peer Dependencies
+
+The library has the following peer dependencies that should already be in your project:
+
+```json
+{
+  "react": "^18.0.0 || ^19.0.0",
+  "react-dom": "^18.0.0 || ^19.0.0",
+  "@radix-ui/react-slot": "^1.0.0",
+  "class-variance-authority": "^0.7.0",
+  "clsx": "^2.0.0",
+  "tailwind-merge": "^2.0.0"
+}
+```
+
+## Verification
+
+After installation, verify everything is working:
+
+<LiveCodeBlock
+  code={`() => {
+  const [status, setStatus] = React.useState('checking')
+  
+  React.useEffect(() => {
+    // Simulate checking installation
+    setTimeout(() => setStatus('ready'), 1000)
+  }, [])
+  
+  return (
+    <div className="p-6 rounded-lg bg-gray-50 dark:bg-gray-900">
+      <h3 className="font-semibold mb-4">Installation Check</h3>
+      
+      {status === 'checking' ? (
+        <div className="flex items-center gap-2 text-gray-600">
+          <Spinner size="sm" />
+          <span>Checking installation...</span>
+        </div>
+      ) : (
+        <div className="space-y-3">
+          <div className="flex items-center gap-2 text-green-600">
+            <span>✅</span>
+            <span>Components loaded successfully</span>
+          </div>
+          
+          <div className="flex gap-2">
+            <CustomButton size="sm" variant="default">
+              It works! 🎉
+            </CustomButton>
+            <CustomButton size="sm" variant="outline">
+              Ready to build
+            </CustomButton>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}`}
+  className="my-6"
+/>
+
+## Troubleshooting
+
+### Module Resolution Issues
+
+If you encounter import errors:
+
+1. Ensure you're using a modern bundler (Vite, Next.js 13+, etc.)
+2. Check your `tsconfig.json` moduleResolution setting
+3. Try clearing your node_modules and reinstalling
+
+### Style Issues
+
+If styles aren't applying:
+
+1. Verify you've imported the CSS files
+2. Check your Tailwind configuration includes the library paths
+3. Ensure your bundler processes CSS imports
+
+### TypeScript Errors
+
+If you see type errors:
+
+1. Update TypeScript to 5.0 or later
+2. Check that all peer dependencies are installed
+3. Restart your TypeScript server in your IDE
+
+## Next Steps
+
+- Explore the [Components](/components) section
+- Check out the [Custom Button](/components/button) documentation
+- Join our [GitHub Discussions](https://github.com/your-username/ui-library/discussions) for help
