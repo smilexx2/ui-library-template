@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live"
 import { themes } from "prism-react-renderer"
 import { useTheme } from "nextra-theme-docs"
@@ -22,7 +22,13 @@ export function LiveCodeBlock({
   className = "",
 }: LiveCodeBlockProps) {
   const { resolvedTheme } = useTheme()
-  const isDark = resolvedTheme === "dark"
+  const [mounted, setMounted] = useState(false)
+  const [isDark, setIsDark] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+    setIsDark(resolvedTheme === "dark")
+  }, [resolvedTheme])
 
   const defaultScope = {
     React,
@@ -31,10 +37,28 @@ export function LiveCodeBlock({
     ...scope,
   }
 
+  // Prevent hydration mismatch by not rendering theme-dependent content until mounted
+  if (!mounted) {
+    return (
+      <div className={`rounded-lg border border-border overflow-hidden ${className}`}>
+        <div className="p-4 border-b border-border bg-muted">
+          <div className="text-sm font-medium mb-2 text-foreground">Live Editor</div>
+          <div className="rounded-md overflow-hidden bg-white">
+            <div className="font-mono text-sm p-4 text-gray-500">Loading...</div>
+          </div>
+        </div>
+        <div className="p-4">
+          <div className="text-sm font-medium mb-2 text-foreground">Preview</div>
+          <div className="rounded-md border border-border bg-card p-4">
+            <div className="text-gray-500">Loading...</div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <div
-      className={`rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden ${className}`}
-    >
+    <div className={`rounded-lg border border-border overflow-hidden ${className}`}>
       <LiveProvider
         code={code.trim()}
         scope={defaultScope}
@@ -42,21 +66,15 @@ export function LiveCodeBlock({
         language={language}
         noInline={noInline}
       >
-        <div
-          className={`p-4 border-b ${
-            isDark ? "bg-gray-900 border-gray-800" : "bg-gray-50 border-gray-200"
-          }`}
-        >
-          <div className={`text-sm font-medium mb-2 ${isDark ? "text-gray-300" : "text-gray-700"}`}>
-            Live Editor
-          </div>
-          <div className="rounded-md overflow-hidden">
+        <div className={`p-4 border-b border-border`}>
+          <div className={`text-sm font-medium mb-2 text-foreground`}>Live Editor</div>
+          <div className={`rounded-md overflow-hidden ${isDark ? "" : "bg-white"}`}>
             <LiveEditor
               className="font-mono text-sm"
               style={{
                 fontFamily: '"Fira Code", "Fira Mono", monospace',
                 fontSize: 14,
-                backgroundColor: isDark ? "#111827" : "#ffffff",
+                backgroundColor: "transparent",
                 color: isDark ? "#e5e7eb" : "#111827",
               }}
             />
@@ -64,14 +82,8 @@ export function LiveCodeBlock({
         </div>
 
         <div className="p-4">
-          <div className={`text-sm font-medium mb-2 ${isDark ? "text-gray-300" : "text-gray-700"}`}>
-            Preview
-          </div>
-          <div
-            className={`rounded-md border p-4 ${
-              isDark ? "border-gray-700 bg-gray-950" : "border-gray-200 bg-white"
-            }`}
-          >
+          <div className={`text-sm font-medium mb-2 text-foreground`}>Preview</div>
+          <div className={`rounded-md border border-border bg-card p-4 dark:!border-0`}>
             <LiveError className="text-red-600 dark:text-red-400 font-mono text-sm mb-2" />
             <div className={isDark ? "dark" : ""}>
               <LivePreview />
