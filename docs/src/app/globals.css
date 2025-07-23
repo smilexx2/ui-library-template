@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+/* Base theme variables for light mode */
 @theme {
   --color-background: #ffffff;
   --color-foreground: #171717;
@@ -14,12 +15,19 @@
   --color-border: #e5e7eb;
   --color-input: #e5e7eb;
   --color-ring: #171717;
+  --color-muted: #f9fafb;
+  --color-muted-foreground: #6b7280;
+  --color-card: #ffffff;
+  --color-card-foreground: #171717;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #171717;
   --font-sans: ui-sans-serif, system-ui, sans-serif;
   --font-mono:
     ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
   --radius: 0.5rem;
 }
 
+/* Dark mode via system preference */
 @media (prefers-color-scheme: dark) {
   @theme {
     --color-background: #0a0a0a;
@@ -35,7 +43,59 @@
     --color-border: #374151;
     --color-input: #374151;
     --color-ring: #ffffff;
+    --color-muted: #1f2937;
+    --color-muted-foreground: #9ca3af;
+    --color-card: #111827;
+    --color-card-foreground: #f9fafb;
+    --color-popover: #111827;
+    --color-popover-foreground: #f9fafb;
   }
+}
+
+/* Dark mode via class (for manual theme switching) */
+.dark {
+  --color-background: #0a0a0a;
+  --color-foreground: #ededed;
+  --color-primary: #ffffff;
+  --color-primary-foreground: #171717;
+  --color-secondary: #374151;
+  --color-secondary-foreground: #ffffff;
+  --color-accent: #374151;
+  --color-accent-foreground: #ffffff;
+  --color-destructive: #f87171;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #374151;
+  --color-input: #374151;
+  --color-ring: #ffffff;
+  --color-muted: #1f2937;
+  --color-muted-foreground: #9ca3af;
+  --color-card: #111827;
+  --color-card-foreground: #f9fafb;
+  --color-popover: #111827;
+  --color-popover-foreground: #f9fafb;
+}
+
+/* Dark mode via data attribute (for compatibility) */
+[data-theme="dark"] {
+  --color-background: #0a0a0a;
+  --color-foreground: #ededed;
+  --color-primary: #ffffff;
+  --color-primary-foreground: #171717;
+  --color-secondary: #374151;
+  --color-secondary-foreground: #ffffff;
+  --color-accent: #374151;
+  --color-accent-foreground: #ffffff;
+  --color-destructive: #f87171;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #374151;
+  --color-input: #374151;
+  --color-ring: #ffffff;
+  --color-muted: #1f2937;
+  --color-muted-foreground: #9ca3af;
+  --color-card: #111827;
+  --color-card-foreground: #f9fafb;
+  --color-popover: #111827;
+  --color-popover-foreground: #f9fafb;
 }
 
 body {

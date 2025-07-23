@@ -3,6 +3,7 @@
 import React from "react"
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live"
 import { themes } from "prism-react-renderer"
+import { useTheme } from "next-themes"
 import { CustomButton, Spinner } from "../components/ui-components"
 
 interface LiveCodeBlockProps {
@@ -20,13 +21,16 @@ export function LiveCodeBlock({
   noInline = false,
   className = "",
 }: LiveCodeBlockProps) {
-  // Default scope with React and UI components
+  const { resolvedTheme } = useTheme()
+  const isDark = resolvedTheme === "dark"
+
   const defaultScope = {
     React,
     CustomButton,
     Spinner,
     ...scope,
   }
+
   return (
     <div
       className={`rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden ${className}`}
@@ -34,12 +38,16 @@ export function LiveCodeBlock({
       <LiveProvider
         code={code.trim()}
         scope={defaultScope}
-        theme={themes.nightOwl}
+        theme={isDark ? themes.nightOwl : themes.github}
         language={language}
         noInline={noInline}
       >
-        <div className="bg-gray-50 dark:bg-gray-900 p-4 border-b border-gray-200 dark:border-gray-800">
-          <div className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <div
+          className={`p-4 border-b ${
+            isDark ? "bg-gray-900 border-gray-800" : "bg-gray-50 border-gray-200"
+          }`}
+        >
+          <div className={`text-sm font-medium mb-2 ${isDark ? "text-gray-300" : "text-gray-700"}`}>
             Live Editor
           </div>
           <div className="rounded-md overflow-hidden">
@@ -48,17 +56,26 @@ export function LiveCodeBlock({
               style={{
                 fontFamily: '"Fira Code", "Fira Mono", monospace',
                 fontSize: 14,
-                backgroundColor: "transparent",
+                backgroundColor: isDark ? "#111827" : "#ffffff",
+                color: isDark ? "#e5e7eb" : "#111827",
               }}
             />
           </div>
         </div>
 
         <div className="p-4">
-          <div className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Preview</div>
-          <div className="rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-950 p-4">
+          <div className={`text-sm font-medium mb-2 ${isDark ? "text-gray-300" : "text-gray-700"}`}>
+            Preview
+          </div>
+          <div
+            className={`rounded-md border p-4 ${
+              isDark ? "border-gray-700 bg-gray-950" : "border-gray-200 bg-white"
+            }`}
+          >
             <LiveError className="text-red-600 dark:text-red-400 font-mono text-sm mb-2" />
-            <LivePreview />
+            <div className={isDark ? "dark" : ""}>
+              <LivePreview />
+            </div>
           </div>
         </div>
       </LiveProvider>

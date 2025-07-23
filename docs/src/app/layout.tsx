@@ -40,6 +40,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           pageMap={await getPageMap()}
           docsRepositoryBase="https://github.com/shuding/nextra/tree/main/docs"
           footer={footer}
+          // Theme configuration
+          darkMode={true}
+          nextThemes={{
+            defaultTheme: 'system',
+            storageKey: 'nextra-theme'
+          }}
           // ... Your additional layout options
         >
           {children}

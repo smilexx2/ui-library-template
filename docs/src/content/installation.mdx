@@ -235,6 +235,54 @@ If you see type errors:
 2. Check that all peer dependencies are installed
 3. Restart your TypeScript server in your IDE
 
+## Theme Configuration
+
+### Dark Mode Support
+
+This documentation site and the component library fully support dark mode through multiple detection methods:
+
+#### Nextra Theme Configuration
+
+The docs are configured with automatic theme switching:
+
+```tsx
+// layout.tsx
+<Layout
+  darkMode={true}                    // Enable dark mode toggle
+  nextThemes={{                      // next-themes configuration
+    defaultTheme: 'system',          // Default to system preference
+    storageKey: 'nextra-theme'       // LocalStorage key
+  }}
+  // ... other layout options
+>
+```
+
+#### CSS Variables
+
+Our CSS uses comprehensive theme variables that work with multiple dark mode approaches:
+
+```css
+/* System preference */
+@media (prefers-color-scheme: dark) { /* ... */ }
+
+/* Class-based (next-themes, manual toggle) */
+.dark { /* ... */ }
+
+/* Data attribute (compatibility) */
+[data-theme="dark"] { /* ... */ }
+```
+
+#### Component Integration
+
+Components automatically sync with the current theme using:
+
+- **Direct integration with next-themes** - Components use `useTheme()` hook for real-time theme detection
+- **Automatic theme switching** - No manual observers or localStorage listeners needed
+- **System preference support** - Respects user's system theme preference
+- **Manual theme override** - Supports explicit light/dark mode selection
+
+This ensures seamless compatibility with shadcn/ui, next-themes, and system preferences while providing a clean, maintainable codebase.
+
 ## Next Steps
 
 - Explore the [Components](/components) section
