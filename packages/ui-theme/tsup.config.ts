@@ -3,10 +3,11 @@ import { defineConfig } from 'tsup'
 export default defineConfig({
   entry: {
     index: './src/index.ts',
+    'styles/index': './src/styles/index.css',
   },
   format: ['esm', 'cjs'],
   dts: { resolve: true },
-  injectStyle: true,
+  injectStyle: false, // Generate separate CSS files for theme
   tsconfig: './tsconfig.build.json',
   clean: true,
   outDir: 'dist',
