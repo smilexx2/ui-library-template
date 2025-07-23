@@ -3,7 +3,7 @@
 import React from "react"
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live"
 import { themes } from "prism-react-renderer"
-import { useTheme } from "next-themes"
+import { useTheme } from "nextra-theme-docs"
 import { CustomButton, Spinner } from "../components/ui-components"
 
 interface LiveCodeBlockProps {
