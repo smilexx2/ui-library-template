@@ -41,16 +41,16 @@ export function LiveCodeBlock({
   if (!mounted) {
     return (
       <div className={`rounded-lg border border-border overflow-hidden ${className}`}>
-        <div className="p-4 border-b border-border bg-muted">
+        <div className={`p-4 border-b border-border`}>
           <div className="text-sm font-medium mb-2 text-foreground">Live Editor</div>
-          <div className="rounded-md overflow-hidden bg-white">
-            <div className="font-mono text-sm p-4 text-gray-500">Loading...</div>
+          <div className="rounded-md overflow-hidden bg-white dark:bg-card">
+            <div className="font-mono text-sm p-4 text-gray-500 dark:text-gray-400">Loading...</div>
           </div>
         </div>
         <div className="p-4">
           <div className="text-sm font-medium mb-2 text-foreground">Preview</div>
-          <div className="rounded-md border border-border bg-card p-4">
-            <div className="text-gray-500">Loading...</div>
+          <div className="rounded-md border border-border bg-card p-4 dark:!border-0">
+            <div className="text-gray-500 dark:text-gray-400">Loading...</div>
           </div>
         </div>
       </div>
