@@ -40,12 +40,6 @@ This is a monorepo UI component library template built with:
    - [ ] Cross-package integration tests for component interoperability
    - [ ] E2E tests for documentation site and Storybook functionality
 
-3. **Storybook Integration** → [`storybook-integration.md`](tasks/phase-1-testing/storybook-integration.md) ✅ **New**
-   - [ ] Migrate from default Button/Header/Page stories to real components
-   - [ ] Create organized story structure by package (ui-core, ui, custom)
-   - [ ] Add interactive stories with user workflow testing
-   - [ ] Component showcase demonstrating real-world usage patterns
-
 ### Phase 2: CI/CD & Automation
 
 **📁 Task Files**: [`tasks/phase-2-cicd/`](tasks/phase-2-cicd/)
